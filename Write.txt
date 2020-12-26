@@ -1,0 +1,55 @@
+package voc;
+import java.util.*;
+import java.io.*;
+/**
+ * 因為從網頁抓下來的原始資料包含了"rollbarv2.3.9.min.js:2"，
+ *所以利用此程式將英文單字寫入新的檔案
+ *去除不必要的字串
+ *並輸出檢查格式是否正確
+ */
+
+//輸入:從quizlet抓下來的原始資料的(txt檔)
+//輸出:格式正確的英文單字(txt檔)
+//last:
+//next:Read.java
+
+public class Write {
+	public static void main(String[] args) throws IOException {
+		FileReader fr = new FileReader("C:\\Users\\user\\Desktop\\Voc\\IvySource1.txt");
+		BufferedReader br = new BufferedReader(fr);
+		FileWriter fw = new FileWriter("C:\\Users\\user\\Desktop\\Voc\\Ivy1.txt");
+		
+		char [] cha = {'r','o','l','l','b','a','r','v'};
+		while (br.ready()) {
+			String str=br.readLine();
+			for(int i=0 ; true; i++) {
+				if(str.charAt(i)!=cha[i]) { //be sure it's vocabulary
+					fw.write(str+"\n");
+					break;
+				}
+				if(i==cha.length-1) { //It's must be "rollbarv2.3.9.min.js:2", not vocabulary 
+					str=str.substring(23);
+					fw.write(str+"\n");
+					break;
+				}
+			}
+			
+			
+		}
+		
+		fw.flush(); // write in
+		fr.close();
+		fw.close();
+		
+		output();
+	}
+	
+	static void output() throws IOException {
+		FileReader fr = new FileReader("C:\\Users\\user\\Desktop\\Voc\\Ivy1.txt");
+		BufferedReader br = new BufferedReader(fr);
+		while(br.ready()) {
+			System.out.println(br.readLine());
+		}
+		fr.close();
+	}
+}

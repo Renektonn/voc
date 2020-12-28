@@ -1,0 +1,21 @@
+package voc;
+
+import javax.swing.JFrame;
+
+import Game.Gameplay;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame frame=new JFrame();
+		Vocabulary voc=new Vocabulary();
+		frame.setBounds(10,10,900,900);
+		frame.setTitle("Vocabulary");
+		frame.setResizable(false);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(voc);
+
+	}
+
+}
